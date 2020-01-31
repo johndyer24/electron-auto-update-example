@@ -15,11 +15,13 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+  mainWindow.once('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
 }
 
 app.on('ready', () => {
   createWindow();
-  autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on('window-all-closed', function () {
